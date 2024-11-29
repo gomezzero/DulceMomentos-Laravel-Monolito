@@ -14,11 +14,4 @@ class Product extends Model
         'size',
         'price'
     ];
-
-    public function orders()
-    {
-        return $this->belongsToMany(Order::class, 'order_product')
-            ->withPivot('cantidad', 'net_value')
-            ->withTimestamps();
-    }
 }

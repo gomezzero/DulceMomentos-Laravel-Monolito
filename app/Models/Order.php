@@ -19,11 +19,4 @@ class Order extends Model
     {
         return $this->belongsTo(Client::class, 'clients_id');
     }
-
-    public function products()
-    {
-        return $this->belongsToMany(Product::class, 'order_product')
-            ->withPivot('cantidad', 'net_value')
-            ->withTimestamps();
-    }
 }

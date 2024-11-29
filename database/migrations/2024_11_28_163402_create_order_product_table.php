@@ -12,8 +12,20 @@ return new class extends Migration
             $table->id();
             $table->integer('cantidad');
             $table->double('net_value');
-            $table->foreignId('order_id')->nullable()->constrained('orders')->cascadeOnDelete();
-            $table->foreignId('products_id')->nullable()->constrained('products')->cascadeOnDelete();
+            $table->unsignedBigInteger('order_id')->nullable();
+            $table->unsignedBigInteger('products_id')->nullable();
+
+            $table->foreign('order_id')
+            ->references('id')
+            ->on('orders')
+            ->onDelete('set null')
+            ->onUpdate('cascade');
+
+            $table->foreign('products_id')
+            ->references('id')
+            ->on('products')
+            ->onDelete('set null')
+            ->onUpdate('cascade');
             $table->timestamps();
         });
     }

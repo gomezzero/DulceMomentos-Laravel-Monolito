@@ -13,7 +13,13 @@ return new class extends Migration
             $table->date('delivery_date');
             $table->string('description')->nullable();
             $table->string('status');
-            $table->foreignId('clients_id')->nullable()->constrained('clients')->cascadeOnDelete();
+            $table->unsignedBigInteger('clients_id')->nullable();
+
+            $table->foreign('clients_id')
+                ->references('id')
+                ->on('clients')
+                ->onDelete('set null')
+                ->onUpdate('cascade');
             $table->timestamps();
         });
     }

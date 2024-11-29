@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('size');
-            $table->string('price'); // Si el precio será texto, caso contrario usa `double`.
+            $table->string('price');
             $table->timestamps();
         });
     }
